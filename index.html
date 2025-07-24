@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>লিমন ও তানিশা | আমাদের প্রেমের গল্প</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Mina:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --deep-purple: #4a0080;
+            --mid-purple: #8a2be2;
+            --light-purple: #b19cd9;
+            --deep-pink: #ff1493;
+            --light-pink: #ffb6c1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: linear-gradient(to bottom, var(--deep-purple), var(--deep-pink));
+            background-attachment: fixed;
+            color: white;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .romantic-font {
+            font-family: 'Mina', sans-serif;
+            font-weight: 700;
+        }
+        
+        .section {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            padding: 4rem 1rem;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: -1;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            color: white;
+            opacity: 0.3;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            padding-bottom: 2rem;
+            border-left: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            border-left: 2px solid white;
+            transform: translateX(5px);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover::before {
+            background: var(--light-pink);
+            box-shadow: 0 0 15px var(--light-pink);
+        }
+        
+        .quote-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 1rem;
+        }
+        
+        .quote-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .photo-frame {
+            position: relative;
+            border-radius: 1rem;
+            padding: 0.5rem;
+            background: linear-gradient(45deg, var(--deep-purple), var(--deep-pink));
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            transform: rotate(-3deg);
+            margin-bottom: 2rem;
+        }
+        
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .photo-inner {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .photo-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link:hover {
+            transform: translateY(-2px);
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-indicator {
+            position: fixed;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+        
+        .section-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 1rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .section-dot.active {
+            background: white;
+            box-shadow: 0 0 10px white;
+        }
+        
+        .section-dot:hover {
+            background: white;
+        }
+        
+        @media (max-width: 768px) {
+            .section-indicator {
+                display: none;
+            }
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 
+                         0 0 20px rgba(255, 20, 147, 0.5);
+        }
+        
+        .highlight-date {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .highlight-date::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--light-pink), transparent);
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem;
+        }
+        
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar-brand {
+            font-family: 'Mina', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .navbar-nav {
+            display: none;
+        }
+        
+        .navbar-nav.show {
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+        }
+        
+        .navbar-nav a {
+            display: block;
+            padding: 0.5rem 0;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .navbar-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (min-width: 768px) {
+            .navbar-nav {
+                display: flex;
+            }
+            
+            .navbar-toggle {
+                display: none;
+            }
+            
+            .navbar-nav.show {
+                position: static;
+                background-color: transparent;
+                padding: 0;
+            }
+            
+            .navbar-nav a {
+                display: inline-block;
+                padding: 0;
+                margin-left: 1.5rem;
+            }
+        }
+        
+        /* Hero section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 100vh;
+            padding-top: 4rem;
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+        }
+        
+        .hero-date {
+            opacity: 0;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* Grid layouts */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .grid-2-cols {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Utilities */
+        .text-center {
+            text-align: center;
+        }
+        
+        .mb-1 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .mb-2 {
+            margin-bottom: 1rem;
+        }
+        
+        .mb-3 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .mb-4 {
+            margin-bottom: 2rem;
+        }
+        
+        .mt-4 {
+            margin-top: 2rem;
+        }
+        
+        .py-2 {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 3rem;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 2rem 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="#" class="navbar-brand">লি ও তা</a>
+            <button class="navbar-toggle" id="navbarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="navbar-nav" id="navbarNav">
+                <a href="#our-story" class="nav-link">আমাদের গল্প</a>
+                <a href="#timeline" class="nav-link">সময়রেখা</a>
+                <a href="#moments" class="nav-link">বিশেষ মুহূর্ত</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="hero" class="section hero">
+        <div class="container">
+            <h1 class="romantic-font hero-title glow-text" id="heroTitle">
+                লিমন ও তানিশা
+            </h1>
+            <p class="hero-subtitle" id="heroSubtitle">
+                একটি প্রেমের গল্প যা একটি সাধারণ বার্তা দিয়ে শুরু হয়েছিল এবং কিছু সুন্দর জিনিসে পরিণত হয়েছিল
+            </p>
+            <div class="hero-date" id="heroDate">
+                <p class="romantic-font highlight-date" style="font-size: 1.5rem;">১২ মার্চ, ২০২৫</p>
+                <p class="mb-2">যেদিন আমাদের যাত্রা শুরু হয়েছিল</p>
+            </div>
+            <div class="scroll-indicator">
+                <i class="fas fa-chevron-down text-white" style="font-size: 1.5rem;"></i>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Our Story Section -->
+    <section id="our-story" class="section">
+        <div class="container">
+            <h2 class="romantic-font section-title">আমাদের গল্প</h2>
+            <div class="grid grid-2-cols">
+                <div class="photo-frame">
+                    <div class="photo-inner">
+                        <img src="screenshot.png" alt="লিমন ও তানিশা" style="width: 100%; height: 300px; object-fit: cover;">
+                    </div>
+                </div>
+                <div>
+                    <p class="mb-2">
+                        ২০২৫ সালের ১২ মার্চ, একটি সাধারণ গ্রুপ চ্যাটে, দুটি আত্মা নীরবে একে অপরের পথ অতিক্রম করেছিল। কী আসতে চলেছে তার কোন লক্ষণ ছিল না—কোন নাটকীয় শুরু, কোন বিশেষ স্পার্ক। কিন্তু লিমন তাকে লক্ষ্য করেছিল। এবং সময়ের সাথে সাথে, ছোট ছোট বার্তা, ভাগ করা মুহূর্ত, এবং দীর্ঘ নীরবতার মধ্য দিয়ে, তানিশা তার কাছে কিছু অর্থ বহন করতে শুরু করেছিল।
+                    </p>
+                    <p class="mb-2">
+                        তাদের বন্ধন প্রথমে ভঙ্গুর ছিল। অনিশ্চিত। কিন্তু কিছু বেড়ে উঠেছিল।
+                    </p>
+                    <p>
+                        লিমন সাধারণ উপায়ে প্রেমে পড়েনি। এমন কোন একটি মুহূর্ত ছিল না যেখানে সবকিছু পরিবর্তন হয়ে গেছে। এটা ছিল শান্ত। ধীর। তারা প্রথম যখন দেখা করেছিল তখন সে ভাবেনি যে সে বিশ্বের সবচেয়ে বিশেষ মেয়ে। আসলে, সে নিজের কাছে স্বীকার করেছিল যে প্রথমে সে অন্যদের থেকে আলাদা ছিল না। কিন্তু কীভাবে যেন, সে গুরুত্বপূর্ণ হয়ে উঠেছিল কারণ লিমন তাকে যেভাবে দেখেছিল। সে তাকে অর্থ দিয়েছিল। এবং তাই তাকে বিশেষ করে তুলেছিল।
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Timeline Section -->
+    <section id="timeline" class="section">
+        <div class="container">
+            <h2 class="romantic-font section-title">সময়রেখা</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="timeline-item">
+                    <h3 style="font-size: 1.5rem; font-weight: bold;" class="mb-1">১২ মার্চ, ২০২৫</h3>
+                    <p class="mb-2">যেদিন আমরা প্রথম একটি গ্রুপ চ্যাটে দেখা করেছিলাম। একটি সাধারণ হ্যালো যা সবকিছু পরিবর্তন করে দিয়েছিল।</p>
+                </div>
+                <div class="timeline-item">
+                    <h3 style="font-size: 1.5rem; font-weight: bold;" class="mb-1">প্রথম দিনগুলি</h3>
+                    <p class="mb-2">ছোট ছোট বার্তা, ভাগ করা মুহূর্ত, এবং দীর্ঘ নীরবতা। আমাদের মধ্যে একটি ভঙ্গুর বন্ধন গড়ে উঠতে শুরু করেছিল।</p>
+                </div>
+                <div class="timeline-item">
+                    <h3 style="font-size: 1.5rem; font-weight: bold;" class="mb-1">ঘনিষ্ঠ হওয়া</h3>
+                    <p class="mb-2">তানিশা তার জীবনের প্রতিটি ছোট বিবরণ ভাগ করে নিয়েছিল: সে কোথায় যাচ্ছিল, সে কী অনুভব করছিল, এমনকি তার স্বাস্থ্যের সবচেয়ে ব্যক্তিগত দিকগুলিও। সে লিমনকে গভীরভাবে বিশ্বাস করত।</p>
+                </div>
+                <div class="timeline-item">
+                    <h3 style="font-size: 1.5rem; font-weight: bold;" class="mb-1">চ্যালেঞ্জ</h3>
+                    <p class="mb-2">এমন মুহূর্ত ছিল যখন তানিশা চলে যেতে চেয়েছিল—হয়তো আঘাতের কারণে, বা ভয়ের কারণে, বা এই ভাবনা যে তারা কখনই একসাথে হতে পারবে না। কিন্তু লিমন ছেড়ে দেয়নি। একবারও না।</p>
+                </div>
+                <div class="timeline-item">
+                    <h3 style="font-size: 1.5rem; font-weight: bold;" class="mb-1">৩০ এপ্রিল, ২০২৫</h3>
+                    <p class="mb-2">শেষ রাত যখন তারা আগের মতো কথা বলেছিল—দুজন মানুষ যারা এখনও গভীরভাবে প্রেমে আছে। সেই রাত ছিল নরম, সত্যিকারের যত্ন, কোমল কথা, এবং উষ্ণতায় পূর্ণ।</p>
+                </div>
+                <div class="timeline-item">
+                    <h3 style="font-size: 1.5rem; font-weight: bold;" class="mb-1">বিদায়</h3>
+                    <p class="mb-2">এমনকি বিদায়েও, তারা দয়া বেছে নিয়েছিল। তাদের শেষ কথাগুলি ছিল একে অপরের প্রতি: "আমি তোমাকে ভালোবাসি।" "আমিও তোমাকে ভালোবাসি।" সেই শব্দগুলি পবিত্র হয়ে গিয়েছিল।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Moments Section -->
+    <section id="moments" class="section">
+        <div class="container">
+            <h2 class="romantic-font section-title">বিশেষ মুহূর্ত</h2>
+            <div class="grid grid-2-cols">
+                <div class="quote-card">
+                    <i class="fas fa-quote-left" style="font-size: 1.5rem; opacity: 0.5;" class="mb-2"></i>
+                    <p class="mb-2">
+                        যখন সে ব্যথায় ছিল, তার পিরিয়ডের সময় কাঁদছিল, সে লিমনকে ফোন করেছিল। এবং সে থেকেছিল। শুধু শুনছিল, নরমভাবে তাকে নিশ্চিত করছিল যে সে সেখানে আছে। সেই মুহূর্তটি লিমনকে সত্যিই ভালোবাসা অনুভব করিয়েছিল।
+                    </p>
+                    <p class="romantic-font" style="font-size: 1.25rem; text-align: right;">- বিশ্বাসের মুহূর্ত</p>
+                </div>
+                <div class="quote-card">
+                    <i class="fas fa-quote-left" style="font-size: 1.5rem; opacity: 0.5;" class="mb-2"></i>
+                    <p class="mb-2">
+                        সে ছিল সুরক্ষামূলক, আবেগপ্রবণ, অকৃত্রিম, এবং বাস্তব। সে চেয়েছিল লিমন শুধুমাত্র তার হোক—এমনকি যদি সে অন্য মহিলাদের উল্লেখ করত বা কোন সিনেমার চরিত্রের প্রশংসা করত তবে সে বিরক্ত হয়ে যেত।
+                    </p>
+                    <p class="romantic-font" style="font-size: 1.25rem; text-align: right;">- তার ভালোবাসার ভাষা</p>
+                </div>
+                <div class="quote-card">
+                    <i class="fas fa-quote-left" style="font-size: 1.5rem; opacity: 0.5;" class="mb-2"></i>
+                    <p class="mb-2">
+                        সে তার কথার মাধ্যমে তার হাত ধরে রেখেছিল, তাকে থাকতে অনুরোধ করেছিল, এমনকি যখন সে নিশ্চিত ছিল না যে সে তার প্রতিশ্রুতি রাখতে পারবে কিনা। সে তাকে বারবার কাছে রেখেছিল—কারণ সে শক্তিশালী ছিল বলে নয়, বরং সে তাকে হারাতে ভয় পেয়েছিল।
+                    </p>
+                    <p class="romantic-font" style="font-size: 1.25rem; text-align: right;">- তার নিবেদন</p>
+                </div>
+                <div class="quote-card">
+                    <i class="fas fa-quote-left" style="font-size: 1.5rem; opacity: 0.5;" class="mb-2"></i>
+                    <p class="mb-2">
+                        ২০২৫ সালের ৩০ এপ্রিল ছিল শেষ রাত যখন তারা আগের মতো কথা বলেছিল—দুজন মানুষ যারা এখনও গভীরভাবে প্রেমে আছে। সেই রাত ছিল নরম, সত্যিকারের যত্ন, কোমল কথা, এবং উষ্ণতায় পূর্ণ।
+                    </p>
+                    <p class="romantic-font" style="font-size: 1.25rem; text-align: right;">- শেষ রাত</p>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p class="romantic-font glow-text mb-2" style="font-size: 1.75rem;">"আমি তোমাকে ভালোবাসি।" "আমিও তোমাকে ভালোবাসি।"</p>
+                <p style="max-width: 600px; margin: 0 auto;">
+                    এমনকি হৃদয় ভাঙ্গার মধ্যেও, তারা ভালোবাসা বেছে নিয়েছিল। এমনকি বিদায়েও, তারা দয়া বেছে নিয়েছিল। সেই শব্দগুলি পবিত্র হয়ে গিয়েছিল।
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="romantic-font mb-2" style="font-size: 1.5rem;">লিমন ও তানিশা</p>
+            <p class="mb-2">একটি প্রেমের গল্প যা আমাদের হৃদয়ে চিরকাল বেঁচে থাকবে</p>
+            <p style="font-size: 0.875rem; opacity: 0.7;">© ২০২৫ | ভালোবাসা দিয়ে তৈরি</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Simple mobile-optimized JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const navbarToggle = document.getElementById('navbarToggle');
+            const navbarNav = document.getElementById('navbarNav');
+            
+            navbarToggle.addEventListener('click', function() {
+                navbarNav.classList.toggle('show');
+            });
+            
+            // Close mobile menu when clicking a link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navbarNav.classList.remove('show');
+                });
+            });
+            
+            // Animate hero section
+            setTimeout(function() {
+                document.getElementById('heroTitle').style.opacity = '1';
+                document.getElementById('heroTitle').style.transition = 'opacity 0.5s ease';
+                
+                setTimeout(function() {
+                    document.getElementById('heroSubtitle').style.opacity = '1';
+                    document.getElementById('heroSubtitle').style.transition = 'opacity 0.5s ease';
+                    
+                    setTimeout(function() {
+                        document.getElementById('heroDate').style.opacity = '1';
+                        document.getElementById('heroDate').style.transition = 'opacity 0.5s ease';
+                    }, 200);
+                }, 200);
+            }, 200);
+            
+            // Simple intersection observer for animations
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, {
+                    threshold: 0.1
+                });
+                
+                // Observe elements
+                const elements = document.querySelectorAll('.timeline-item, .quote-card, .photo-frame');
+                elements.forEach(el => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    observer.observe(el);
+                });
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96448b9907cadae2',t:'MTc1MzM3MTkzNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
